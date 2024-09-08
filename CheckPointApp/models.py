@@ -20,7 +20,7 @@ class CpInputModel(models.Model):
     person = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
-        return reverse('success')
+        return reverse('success', kwargs={'pk': self.pk})
     
     def __str__(self):
         return f'Check Point {self.pk} by {self.person}'

@@ -13,6 +13,52 @@
             <div class="d-grid gap-3">
                 <h2>Data berhasil dikirim</h2><br>
             </div>
+            <h2>Detail Check Point</h2>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Jumlah manpower</th>
+                <td>{{ object.mp_jumlah|yesno:"Ya,Tidak" }}</td>
+            </tr>
+            <tr>
+                <th>Manpower pada posnya</th>
+                <td>{{ object.mp_pos|yesno:"Ya,Tidak" }}</td>
+            </tr>
+            <tr>
+                <th>Jumlah material</th>
+                <td>{{ object.material_jumlah|yesno:"Ya,Tidak" }}</td>
+            </tr>
+            <tr>
+                <th>Material sesuai standar</th>
+                <td>{{ object.material_std|yesno:"Ya,Tidak" }}</td>
+            </tr>
+            <tr>
+                <th>Mesin normal</th>
+                <td>{{ object.mesin_normal|yesno:"Ya,Tidak" }}</td>
+            </tr>
+            <tr>
+                <th>Metode sesuai standar</th>
+                <td>{{ object.metode_sesuai|yesno:"Ya,Tidak" }}</td>
+            </tr>
+            <tr>
+                <th>Plan vs Aktual</th>
+                <td>{{ object.plan_vs_actual|yesno:"Ya,Tidak" }}</td>
+            </tr>
+            <tr>
+                <th>Environment aman</th>
+                <td>{{ object.environment_aman|yesno:"Ya,Tidak" }}</td>
+            </tr>
+            <tr>
+                <th>Tanggal Check</th>
+                <td>{{ object.tanggal_check }}</td>
+            </tr>
+            <tr>
+                <th>Person</th>
+                <td>{{ object.person.username }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'CpInput' %}" class="btn btn-primary">Cek Ulang</a>
         </div>
     </body>
 </html>

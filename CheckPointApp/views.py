@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView, FormView, CreateView
+from django.views.generic import TemplateView, ListView, FormView, CreateView, DetailView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import CpInputModel
@@ -23,7 +23,8 @@ class CpInput(CreateView):
     #form_class = CpInputForm
     #success_url = '/success/' 
 
-class Success(TemplateView):
+class Success(DetailView):
+    model = CpInputModel
     template_name = 'success.html'
 
 

@@ -6,5 +6,5 @@ urlpatterns = [
     path('report', views.Report.as_view(), name="CpReport"),
     path('login', views.PiketLoginView.as_view(), name="login"),
     path('logout', views.PiketLogoutView.as_view(), name="logout"),
-    path('success', views.Success.as_view(), name="success"),
+    path('success/<int:pk>/', views.Success.as_view(), name="success"),
 ]
