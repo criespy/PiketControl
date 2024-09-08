@@ -1,0 +1,49 @@
+{% load static %}
+{% load tz %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content='maximum-scale=1.0, initial-scale=1.0, width=device-width' name='viewport'>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <title>Sistem Check Point Tag</title>
+    </head>
+    <body class="py-4">
+        <div class="container-fluid">
+            <h1>Check History Report</h1>
+            <div class="table-fluid">
+                <table class="table">
+                    <thead class="table-dark">
+                        <td>ID</td>
+                        <td>Tanggal Cek</td>
+                        <td>PIC</td>
+                        <td>Jumlah MP Sesuai</td>
+                        <td>MP pada posnya</td>
+                        <td>Jumlah Material Sesuai</td>
+                        <td>Material Sesuai Standar</td>
+                        <td>Mesin Normal</td>
+                        <td>Metode Sesuai</td>
+                        <td>Plan vs Aktual Sesuai</td>
+                        <td>Environment Aman</td>
+                    </thead>
+                    <tbody>
+                        {% for cek in object_list %}
+                        <tr>
+                            <td>{{ cek.id }}</td>
+                            <td>{{ cek.tanggal_check }}</td>
+                            <td>{{ cek.person.first_name }} {{ cek.person.last_name }}</td>
+                            <td>{{ cek.mp_jumlah|yesno:"Ya,Tidak" }}</td>
+                            <td>{{ cek.mp_pos|yesno:"Ya,Tidak" }}</td>
+                            <td>{{ cek.material_jumlah|yesno:"Ya,Tidak" }}</td>
+                            <td>{{ cek.material_std|yesno:"Ya,Tidak" }}</td>
+                            <td>{{ cek.mesin_normal|yesno:"Ya,Tidak" }}</td>
+                            <td>{{ cek.metode_sesuai|yesno:"Ya,Tidak" }}</td>
+                            <td>{{ cek.plan_vs_actual|yesno:"Ya,Tidak" }}</td>
+                            <td>{{ cek.environment_aman|yesno:"Ya,Tidak" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+    </body>

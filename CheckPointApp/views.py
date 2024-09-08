@@ -31,3 +31,4 @@ class Success(DetailView):
 class Report(LoginRequiredMixin, ListView):
     login_url = 'login'
     model = CpInputModel
+    template_name = 'report.html'
