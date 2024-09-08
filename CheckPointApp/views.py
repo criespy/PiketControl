@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView, FormView
+from django.views.generic import TemplateView, ListView, FormView, CreateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import CpInputModel
@@ -15,17 +15,16 @@ class PiketLogoutView(LogoutView):
     template_name = 'login.html'
     next_page = 'login'
 
-class CpInput(TemplateView):
+class CpInput(CreateView):
     #login_url = 'login'
     model = CpInputModel
     template_name = 'cp_input.html'
+    fields = '__all__'
     #form_class = CpInputForm
-    success_url = '/success/' 
+    #success_url = '/success/' 
 
-    def form_valid(self, form):
-        # Process the form data
-        form.save()
-        return super().form_valid(form)
+class Success(TemplateView):
+    template_name = 'success.html'
 
 
 class Report(LoginRequiredMixin, ListView):
