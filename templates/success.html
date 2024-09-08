@@ -10,10 +10,11 @@
     </head>
     <body class="py-4">
         <div class="container-fluid">
-            <div class="d-grid gap-3">
-                <h2>Data berhasil dikirim</h2><br>
+            <div class="bg-success text-center text-white align-middle">
+                <h2>Data berhasil dikirim</h2>
             </div>
-            <h2>Detail Check Point</h2>
+            <br>
+            <h3>Detail Check Point</h3>
             <table class="table table-bordered">
                 <tbody>
                     <tr>
@@ -49,12 +50,12 @@
                         <td>{{ object.environment_aman|yesno:"Ya,Tidak" }}</td>
                     </tr>
                     <tr>
-                        <th>Tanggal Check</th>
+                        <th>Waktu check</th>
                         <td>{{ object.tanggal_check }}</td>
                     </tr>
                     <tr>
-                        <th>Person</th>
-                        <td>{{ object.person.username }}</td>
+                        <th>PIC</th>
+                        <td>{{ object.person.first_name }} {{ object.person.last_name }}</td>
                     </tr>
                 </tbody>
             </table>
