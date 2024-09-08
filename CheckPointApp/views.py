@@ -15,8 +15,8 @@ class PiketLogoutView(LogoutView):
     template_name = 'login.html'
     next_page = 'login'
 
-class CpInput(CreateView):
-    #login_url = 'login'
+class CpInput(LoginRequiredMixin, CreateView):
+    login_url = 'login'
     model = CpInputModel
     template_name = 'cp_input.html'
     fields = '__all__'
