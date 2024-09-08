@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content='maximum-scale=1.0, initial-scale=1.0, width=device-width' name='viewport'>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <title>Sistem Check Point</title>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Periksa Point Berikut:</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="table table-borderless">
+                    <tr>
+                        <th>Check Point</th>
+                        <th class="text-center">Sesuai</th>
+                        <th class="text-center">Tidak Sesuai</th>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Jumlah manpower</label></td>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="mp_jumlah" value="True" id="id_mp_jumlah_true" {% if form.mp_jumlah.value == "True" %}checked{% endif %}></td>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="mp_jumlah" value="False" id="id_mp_jumlah_false" {% if form.mp_jumlah.value == "False" %}checked{% endif %}></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Manpower pada posnya</label></td>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="mp_pos" value="True" id="id_mp_pos_true" {% if form.mp_pos.value == "True" %}checked{% endif %}></td>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="mp_pos" value="False" id="id_mp_pos_false" {% if form.mp_pos.value == "False" %}checked{% endif %}></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Jumlah material</label></td>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="material_jml" value="True" id="id_material_jml_true" {% if form.material_jumlah.value == "True" %}checked{% endif %}></td>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="material_jml" value="False" id="id_material_jml_false" {% if form.material_jumlah == "False" %}checked{% endif %}></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Material sesuai standar</label></td>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="material_std" value="True" id="id_material_std_true" {% if form.material_std.value == "True" %}checked{% endif %}></td>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="material_std" value="False" id="id_material_std_false" {% if form.material_std == "False" %}checked{% endif %}></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Mesin normal</label></td>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="mesin_normal" value="True" id="id_mesin_normal_true" {% if form.mesin_normal.value == "True" %}checked{% endif %}></td>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="mesin_normal" value="False" id="id_mesin_normal_false" {% if form.mesin_normal == "False" %}checked{% endif %}></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Mesin normal</label></td>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="metode_sesuai" value="True" id="id_metode_sesuai_true" {% if form.metode_sesuai.value == "True" %}checked{% endif %}></td>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="metode_sesuai" value="False" id="id_metode_sesuai_false" {% if form.metode_sesuai == "False" %}checked{% endif %}></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Plan vs Aktual</label></td>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="plan_vs_actual" value="True" id="id_plan_vs_actual_true" {% if form.plan_vs_actual.value == "True" %}checked{% endif %}></td>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="plan_vs_actual" value="False" id="id_plan_vs_actual_false" {% if form.plan_vs_actual == "False" %}checked{% endif %}></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Environment aman</label></td>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="environment_aman" value="True" id="id_environment_aman_true" {% if form.environment_aman.value == "True" %}checked{% endif %}></td>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <td class="text-center"><input class="form-check-input" type="radio" name="environment_aman" value="False" id="id_environment_aman_false" {% if form.environment_aman == "False" %}checked{% endif %}></td>
+                        </div>
+                    </tr>
+                    <td class="text-end">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </td>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
