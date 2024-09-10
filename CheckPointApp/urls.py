@@ -7,4 +7,5 @@ urlpatterns = [
     path('login/', views.PiketLoginView.as_view(), name="login"),
     path('logout/', views.PiketLogoutView.as_view(), name="logout"),
     path('success/<int:pk>/', views.Success.as_view(), name="success"),
+    path('check/<int:area_id>/', views.CpInput.as_view(), name="CpInput"),
 ]

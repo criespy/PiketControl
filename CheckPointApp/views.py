@@ -1,12 +1,14 @@
 from django.views.generic import TemplateView, ListView, FormView, CreateView, DetailView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import CpInputModel
+from .models import CpInputModel, AreaModel
 from .forms import CpInputForm
 from django.contrib.auth import login, logout, authenticate
 from django_auth_ldap.backend import LDAPBackend
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
 
 redirect_authenticated_user = True
 
@@ -62,9 +64,24 @@ class CpInput(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = CpInputModel
     template_name = 'cp_input.html'
-    fields = '__all__'
-    #form_class = CpInputForm
-    #success_url = '/success/' 
+    fields = ['mp_jumlah', 'mp_pos', 'material_jumlah', 'material_std', 
+              'mesin_normal', 'metode_sesuai', 'plan_vs_actual', 'environment_aman', 'person']
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Fetch AreaModel based on URL parameter
+        area = get_object_or_404(AreaModel, pk=self.kwargs['area_id'])
+        context['area'] = area
+        return context
+
+    def form_valid(self, form):
+        # Set the area field in the CpInputModel based on the URL parameter
+        area = get_object_or_404(AreaModel, pk=self.kwargs['area_id'])
+        form.instance.area = area
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('success', kwargs={'pk': self.object.pk})
 
 class Success(DetailView):
     model = CpInputModel

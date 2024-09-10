@@ -17,6 +17,7 @@
                     <thead class="table-dark">
                         <td>ID</td>
                         <td>Tanggal Cek</td>
+                        <td>Area</td>
                         <td>PIC</td>
                         <td>Jumlah MP Sesuai</td>
                         <td>MP pada posnya</td>
@@ -32,6 +33,7 @@
                         <tr>
                             <td>{{ cek.id }}</td>
                             <td>{{ cek.tanggal_check }}</td>
+                            <td>{{ cek.area }}</td>
                             <td>{{ cek.person.first_name }} {{ cek.person.last_name }}</td>
                             <td>{{ cek.mp_jumlah|yesno:"Ya,Tidak" }}</td>
                             <td>{{ cek.mp_pos|yesno:"Ya,Tidak" }}</td>

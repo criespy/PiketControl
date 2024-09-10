@@ -150,7 +150,8 @@ AUTH_LDAP_USER_SEARCH = LDAPSearch(
 # Connection options
 AUTH_LDAP_CONNECTION_OPTIONS = {
     ldap.OPT_REFERRALS: 0,
-    ldap.OPT_NETWORK_TIMEOUT: 5  # Timeout in seconds
+    ldap.OPT_NETWORK_TIMEOUT: 5,  # Timeout in seconds
+    ldap.OPT_TIMEOUT: 10,           # Operation timeout
 }
 
 # User attribute mapping
