@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import CpInputModel
+from .models import CpInputModel, AreaModel
 
 class CpInputModelAdmin(admin.ModelAdmin):
     list_display = ( 'id',
         'mp_jumlah', 'mp_pos', 'material_jumlah', 'material_std', 
         'mesin_normal', 'metode_sesuai', 'plan_vs_actual', 'environment_aman', 
-        'tanggal_check', 'person'
+        'tanggal_check', 'person', 'area'
     )
     list_filter = ('tanggal_check', 'person')  # Optional: add filters
     search_fields = ('person__username',)  # Optional: search by username
@@ -14,10 +14,11 @@ class CpInputModelAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('mp_jumlah', 'mp_pos', 'material_jumlah', 'material_std',
                        'mesin_normal', 'metode_sesuai', 'plan_vs_actual',
-                       'environment_aman', 'person')
+                       'environment_aman', 'person', 'area')
         }),
     )
     #readonly_fields=('tanggal_check',)
 
 
 admin.site.register(CpInputModel, CpInputModelAdmin)
+admin.site.register(AreaModel)

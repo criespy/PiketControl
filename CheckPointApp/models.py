@@ -8,6 +8,12 @@ class UserDetail(AbstractUser):
     modified_date = models.DateTimeField(auto_now=True)
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
 
+class AreaModel(models.Model):
+    deskripsi = models.TextField(max_length=128)
+
+    def __str__(self):
+        return f'Area {self.pk} {self.deskripsi}'
+
 class CpInputModel(models.Model):
     STATUS_CHOICES = (
         (True, 'Ya'),
@@ -24,6 +30,7 @@ class CpInputModel(models.Model):
     environment_aman = models.BooleanField(choices=STATUS_CHOICES, default=False, null=False)
     tanggal_check = models.DateTimeField(auto_now_add=True, null=False)
     person = models.ForeignKey(UserDetail, on_delete=models.CASCADE) #diubah dari User menjadi UserDetail
+    area = models.ForeignKey(AreaModel, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('success', kwargs={'pk': self.pk})
